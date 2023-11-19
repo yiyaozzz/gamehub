@@ -1,34 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-
+import ListGroup from "./components/ListGroup";
+import Alert from "./components/Alert";
+import Button from "./components/Button";
+import { useState } from "react";
 function App() {
-  const [count, setCount] = useState(0)
+  let items = ["New York", "Beijing", "San Juan", "Los Angelas"];
+  //event handler
+  const handleSelectItem = (item: string) => {
+    console.log(item);
+  };
+
+  const [alertVisible, setAlertVisibility] = useState(false);
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    /*ListGroup
+    <div>
+      <ListGroup
+        items={items}
+        heading="Cites"
+        onSelectItem={handleSelectItem}
+      />
+    </div>*/
+
+    /* Alert
+    <div>
+      <Alert>
+        Hello <span>Stranger!</span>
+      </Alert>
     </div>
-  )
+    */
+
+    /*Buttons
+    <div>
+      <Button onClick={() => console.log("You Got This!")} color="primary">
+        My Button
+      </Button>
+    </div>
+    */
+
+    //Disap with Alert and Button
+    <div>
+      {alertVisible && (
+        <Alert onClose={() => setAlertVisibility(false)}>
+          !!!You Might want to surfing somewhere else!!!
+        </Alert>
+      )}
+      <Button onClick={() => setAlertVisibility(true)}>Hello! Click Me</Button>
+      <ListGroup
+        items={items}
+        heading="This Summertime"
+        onSelectItem={handleSelectItem}
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;
